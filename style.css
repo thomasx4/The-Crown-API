@@ -1,0 +1,791 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #0a0808;
+    min-height: 100vh;
+    color: #e8dcc8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px 50px;
+    background: linear-gradient(180deg, #1a1410, #281e14, #1a1410);
+    border-radius: 40px 40px 20px 20px;
+    margin-bottom: 45px;
+    border-bottom: 3px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+header .crown-symbol {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #d4af37;
+    font-family: 'Georgia', serif;
+}
+
+header .subtitle {
+    color: rgba(232, 220, 200, 0.4);
+    font-size: 1.1rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 12px;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 20px 35px;
+    width: 100%;
+    max-width: 580px;
+    background: rgba(30, 24, 20, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 60px;
+    color: #e8dcc8;
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
+    outline: none;
+    transition: all 0.4s;
+}
+
+.search-input:focus {
+    border-color: #d4af37;
+    background: rgba(40, 32, 26, 0.95);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.05);
+}
+
+.search-input::placeholder {
+    color: rgba(232, 220, 200, 0.3);
+}
+
+.search-btn {
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #d4af37, #b8960f);
+    color: #0a0808;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Georgia', serif;
+    transition: all 0.4s;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 30px rgba(212, 175, 55, 0.15);
+}
+
+.search-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 50px rgba(212, 175, 55, 0.25);
+}
+
+.search-btn:disabled {
+    background: #3a3530;
+    color: #6a6550;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.loading {
+    text-align: center;
+    padding: 70px 40px;
+    display: none;
+}
+
+.loading.active {
+    display: block;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    border: 3px solid rgba(212, 175, 55, 0.05);
+    border-top: 3px solid #d4af37;
+    border-radius: 50%;
+    animation: spin 1.2s ease-in-out infinite;
+    margin: 0 auto 25px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: rgba(232, 220, 200, 0.4);
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.error-message {
+    background: rgba(180, 50, 30, 0.08);
+    border: 1px solid rgba(180, 50, 30, 0.2);
+    color: #c9a06c;
+    padding: 25px 35px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+.series-info {
+    background: rgba(30, 24, 20, 0.95);
+    border-radius: 35px;
+    padding: 45px;
+    margin-bottom: 35px;
+    border: 1px solid rgba(212, 175, 55, 0.08);
+    display: none;
+    animation: fadeInUp 0.8s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.series-info.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.series-header {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.series-poster {
+    width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.series-poster:hover {
+    transform: scale(1.02);
+}
+
+.series-details {
+    flex: 1;
+    min-width: 300px;
+}
+
+.series-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #d4af37;
+    font-family: 'Georgia', serif;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+
+.series-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.meta-tag {
+    background: rgba(212, 175, 55, 0.06);
+    color: #c9a84c;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.meta-tag.imdb {
+    background: rgba(245, 197, 24, 0.08);
+    color: #f5c518;
+    border-color: rgba(245, 197, 24, 0.1);
+}
+
+.series-plot {
+    color: rgba(232, 220, 200, 0.8);
+    line-height: 2;
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    border-left: 2px solid rgba(212, 175, 55, 0.15);
+}
+
+.series-extra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.extra-item {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 18px 22px;
+    border-radius: 15px;
+    border-left: 2px solid rgba(212, 175, 55, 0.15);
+    transition: all 0.3s ease;
+}
+
+.extra-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.extra-item strong {
+    color: #c9a84c;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.extra-item span {
+    color: rgba(232, 220, 200, 0.85);
+    font-size: 0.95rem;
+}
+
+.seasons-section {
+    margin-top: 45px;
+}
+
+.seasons-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e8dcc8;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+    font-family: 'Georgia', serif;
+    letter-spacing: 3px;
+}
+
+.seasons-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.season-tab {
+    padding: 14px 32px;
+    background: rgba(30, 24, 20, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.06);
+    border-radius: 50px;
+    color: rgba(232, 220, 200, 0.4);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: 'Georgia', serif;
+}
+
+.season-tab:hover {
+    background: rgba(212, 175, 55, 0.05);
+    color: rgba(232, 220, 200, 0.7);
+    border-color: rgba(212, 175, 55, 0.1);
+}
+
+.season-tab.active {
+    background: rgba(212, 175, 55, 0.12);
+    color: #d4af37;
+    border-color: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.05);
+}
+
+.episodes-container {
+    display: none;
+}
+
+.episodes-container.active {
+    display: block;
+    animation: fadeInUp 0.6s ease;
+}
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+.episode-card {
+    background: rgba(30, 24, 20, 0.6);
+    border-radius: 22px;
+    padding: 28px;
+    border: 1px solid rgba(212, 175, 55, 0.04);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.episode-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.12);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    background: rgba(40, 32, 26, 0.7);
+}
+
+.episode-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 175, 55, 0.12);
+    color: #d4af37;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    border: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.episode-title {
+    font-size: 1.2rem;
+    color: #e8dcc8;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-family: 'Georgia', serif;
+}
+
+.episode-meta {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 14px;
+    font-size: 0.85rem;
+    color: rgba(232, 220, 200, 0.35);
+    flex-wrap: wrap;
+}
+
+.episode-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.episode-rating {
+    color: #f5c518 !important;
+    font-weight: 600;
+}
+
+.episode-plot {
+    color: rgba(232, 220, 200, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.episode-card.expanded .episode-plot {
+    -webkit-line-clamp: unset;
+}
+
+.toggle-plot {
+    color: #c9a84c;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 14px;
+    display: inline-block;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.toggle-plot:hover {
+    color: #d4af37;
+}
+
+.no-results {
+    text-align: center;
+    padding: 80px 40px;
+    color: rgba(232, 220, 200, 0.3);
+    font-size: 1.1rem;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.08);
+    text-align: center;
+}
+
+footer p {
+    color: rgba(232, 220, 200, 0.3);
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+
+footer p:last-child {
+    color: rgba(232, 220, 200, 0.2);
+    font-size: 0.85rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        padding: 15px 25px;
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+        letter-spacing: 5px;
+    }
+
+    header {
+        padding: 45px 20px 40px;
+    }
+
+    .series-poster {
+        width: 250px;
+    }
+
+    .series-title {
+        font-size: 2.4rem;
+    }
+
+    .series-header {
+        gap: 30px;
+    }
+
+    .episodes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .episode-card {
+        padding: 22px;
+    }
+
+    .search-input {
+        max-width: 450px;
+        padding: 18px 28px;
+    }
+
+    .search-btn {
+        padding: 18px 35px;
+    }
+
+    .series-extra {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* CELULARES (menos de 768px) */
+@media (max-width: 767px) {
+    .container {
+        padding: 12px 16px;
+    }
+
+    header {
+        padding: 35px 15px 30px;
+        border-radius: 25px 25px 15px 15px;
+        margin-bottom: 30px;
+    }
+
+    header .crown-symbol {
+        font-size: 2.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        letter-spacing: 3px;
+    }
+
+    header .subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 3px;
+    }
+
+    .search-section {
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .search-input {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        max-width: 100%;
+        border-radius: 40px;
+    }
+
+    .search-btn {
+        padding: 14px 30px;
+        font-size: 0.85rem;
+        width: 100%;
+        letter-spacing: 2px;
+    }
+
+    .series-info {
+        padding: 25px 18px;
+        border-radius: 25px;
+    }
+
+    .series-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .series-poster {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .series-title {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .series-meta {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .meta-tag {
+        font-size: 0.75rem;
+        padding: 4px 14px;
+    }
+
+    .series-plot {
+        font-size: 0.95rem;
+        padding-left: 0;
+        border-left: none;
+        text-align: center;
+        line-height: 1.7;
+    }
+
+    .series-extra {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .extra-item {
+        padding: 14px 18px;
+    }
+
+    .extra-item strong {
+        font-size: 0.7rem;
+    }
+
+    .extra-item span {
+        font-size: 0.85rem;
+    }
+
+    .seasons-section {
+        margin-top: 30px;
+    }
+
+    .seasons-title {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .seasons-tabs {
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+
+    .season-tab {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+        border-radius: 40px;
+    }
+
+    .episodes-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .episode-card {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .episode-number {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+
+    .episode-title {
+        font-size: 1.05rem;
+    }
+
+    .episode-meta {
+        font-size: 0.75rem;
+        gap: 12px;
+    }
+
+    .episode-plot {
+        font-size: 0.9rem;
+    }
+
+    .toggle-plot {
+        font-size: 0.8rem;
+    }
+
+    .loading {
+        padding: 40px 20px;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+    }
+
+    .error-message {
+        padding: 18px 20px;
+        font-size: 0.9rem;
+    }
+
+    .no-results {
+        padding: 50px 20px;
+        font-size: 0.95rem;
+    }
+
+    /* FOOTER RESPONSIVE */
+    footer {
+        margin-top: 40px;
+        padding: 25px 0 20px;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}
+
+/* CELULARES MUY PEQUEÑOS (menos de 400px) */
+@media (max-width: 399px) {
+    .container {
+        padding: 8px 10px;
+    }
+
+    header {
+        padding: 20px 10px 18px;
+        border-radius: 15px 15px 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    header .crown-symbol {
+        font-size: 1.8rem;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+    }
+
+    header .subtitle {
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+    }
+
+    .search-input {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border-radius: 25px;
+    }
+
+    .search-btn {
+        padding: 10px 16px;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .series-info {
+        padding: 15px 12px;
+        border-radius: 18px;
+    }
+
+    .series-poster {
+        max-width: 150px;
+    }
+
+    .series-title {
+        font-size: 1.3rem;
+    }
+
+    .meta-tag {
+        font-size: 0.6rem;
+        padding: 3px 10px;
+    }
+
+    .series-plot {
+        font-size: 0.85rem;
+    }
+
+    .episode-card {
+        padding: 15px;
+    }
+
+    .episode-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .episode-title {
+        font-size: 0.95rem;
+    }
+
+    .episode-meta {
+        font-size: 0.7rem;
+        gap: 8px;
+    }
+
+    .episode-plot {
+        font-size: 0.8rem;
+    }
+
+    .season-tab {
+        padding: 8px 14px;
+        font-size: 0.7rem;
+    }
+
+    .seasons-title {
+        font-size: 1.2rem;
+    }
+
+    footer p {
+        font-size: 0.7rem;
+    }
+}
